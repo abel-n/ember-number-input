@@ -2,11 +2,9 @@ import TextField from '@ember/component/text-field';
 import {
   computed,
   observer,
-  get,
 } from '@ember/object';
 import { on } from '@ember/object/evented';
 import { getOwner } from '@ember/application';
-import { next } from '@ember/runloop';
 import {
   getCaretPosition,
   setCaretPosition,
@@ -170,11 +168,12 @@ export default TextField.extend({
       const { start, end } = standardizedCaretData;
       const indexOfDecimalSeparator = standardizedValue.toString().indexOf(this.get('decimalSeparator'));
       let newCaretIndex = 0;
-      if (indexOfDecimalSeparator && indexOfDecimalSeparator > end) {
-        newCaretIndex = indexOfDecimalSeparator;
-      }
-      if (indexOfDecimalSeparator && indexOfDecimalSeparator === end) {
-        newCaretIndex = indexOfDecimalSeparator - 1;
+      if (indexOfDecimalSeparator > 0) {
+        if (end > indexOfDecimalSeparator + 1) {
+          newCaretIndex = indexOfDecimalSeparator + 1;
+        } else if (end === indexOfDecimalSeparator + 1) {
+          newCaretIndex = indexOfDecimalSeparator;
+        }
       }
       return {
         value: standardizedValue,
