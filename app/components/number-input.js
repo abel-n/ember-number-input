@@ -1,0 +1,1 @@
+export { default } from 'ember-number-input/components/number-input';
