@@ -219,7 +219,7 @@ test("_calculateUpdatedData – navigation – Shift + Ctrl + ArrowRight", funct
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 1, end: 1 }, { key: "ArrowRight", shiftKey: true, ctrlKey: true }).caretData, { start: 1, end: 11 });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 3, end: 3 }, { key: "ArrowRight", shiftKey: true, ctrlKey: true }).caretData, { start: 3, end: 11 });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 0, end: 3 }, { key: "ArrowRight", shiftKey: true, ctrlKey: true }).caretData, { start: 0, end: 11 });
-  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 3, end: 0 }, { key: "ArrowRight", shiftKey: true, ctrlKey: true }).caretData, { start: 3, end: 3 });
+  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 3, end: 0 }, { key: "ArrowRight", shiftKey: true, ctrlKey: true }).caretData, { start: 3, end: 11 });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 0, end: 17 }, { key: "ArrowRight", shiftKey: true, ctrlKey: true }).caretData, { start: 0, end: 17 });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 17, end: 0 }, { key: "ArrowRight", shiftKey: true, ctrlKey: true }).caretData, { start: 17, end: 11 });
 });

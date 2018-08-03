@@ -164,6 +164,26 @@ export default TextField.extend({
     }
 
     // navigate left
+    if (key === "ArrowLeft" && ctrlKey === true && shiftKey === true) {
+      const { start, end } = standardizedCaretData;
+      const indexOfDecimalSeparator = standardizedValue.toString().indexOf(this.get('decimalSeparator'));
+      let newCaretEndIndex = 0;
+      if (indexOfDecimalSeparator > 0) {
+        if (end > indexOfDecimalSeparator + 1) {
+          newCaretEndIndex = indexOfDecimalSeparator + 1;
+        } else if (end === indexOfDecimalSeparator + 1) {
+          newCaretEndIndex = indexOfDecimalSeparator;
+        }
+      }
+      return {
+        value: standardizedValue,
+        caretData: {
+          start: start,
+          end: newCaretEndIndex
+        }
+      };
+    }
+
     if (key === "ArrowLeft" && shiftKey === true) {
       const { start, end } = standardizedCaretData;
       let newCaretEndIndex = end;
@@ -216,6 +236,26 @@ export default TextField.extend({
     }
 
     // navigate right
+    if (key === "ArrowRight" && ctrlKey === true && shiftKey === true) {
+      const { start, end } = standardizedCaretData;
+      const indexOfDecimalSeparator = standardizedValue.toString().indexOf(this.get('decimalSeparator'));
+      let newCaretEndIndex = standardizedValue.length;
+      if (indexOfDecimalSeparator > 0) {
+        if (end < indexOfDecimalSeparator) {
+          newCaretEndIndex = indexOfDecimalSeparator;
+        } else if (end === indexOfDecimalSeparator) {
+          newCaretEndIndex = indexOfDecimalSeparator + 1;
+        }
+      }
+      return {
+        value: standardizedValue,
+        caretData: {
+          start: start,
+          end: newCaretEndIndex
+        }
+      };
+    }
+
     if (key === "ArrowRight" && shiftKey === true) {
       const { start, end } = standardizedCaretData;
       let newCaretEndIndex = end;
