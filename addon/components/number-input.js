@@ -203,6 +203,22 @@ export default TextField.extend({
     // navigate right
     if (key === "ArrowRight" && ctrlKey === true) {
       const { start, end } = standardizedCaretData;
+      const indexOfDecimalSeparator = standardizedValue.toString().indexOf(this.get('decimalSeparator'));
+      let newCaretIndex = standardizedValue.length;
+      if (indexOfDecimalSeparator > 0) {
+        if (end < indexOfDecimalSeparator) {
+          newCaretIndex = indexOfDecimalSeparator;
+        } else if (end === indexOfDecimalSeparator) {
+          newCaretIndex = indexOfDecimalSeparator + 1;
+        }
+      }
+      return {
+        value: standardizedValue,
+        caretData: {
+          start: newCaretIndex,
+          end: newCaretIndex
+        }
+      };
     }
 
     if (key === "ArrowRight") {

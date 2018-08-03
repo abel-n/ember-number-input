@@ -159,17 +159,17 @@ test("_calculateUpdatedData – navigation – Ctrl + ArrowRight", function(asse
   assert.deepEqual(component._calculateUpdatedData("1000", { start: 0, end: 0 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 4, end: 4 });
   assert.deepEqual(component._calculateUpdatedData("1000", { start: 3, end: 3 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 4, end: 4 });
   assert.deepEqual(component._calculateUpdatedData("1000", { start: 4, end: 4 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 4, end: 4 });
-  assert.deepEqual(component._calculateUpdatedData("1000", { start: 0, end: 3 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 3, end: 3 });
-  assert.deepEqual(component._calculateUpdatedData("1000", { start: 2, end: 3 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 3, end: 3 });
-  assert.deepEqual(component._calculateUpdatedData("1000", { start: 3, end: 2 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 3, end: 3 });
+  assert.deepEqual(component._calculateUpdatedData("1000", { start: 0, end: 3 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 4, end: 4 });
+  assert.deepEqual(component._calculateUpdatedData("1000", { start: 2, end: 3 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 4, end: 4 });
+  assert.deepEqual(component._calculateUpdatedData("1000", { start: 3, end: 2 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 4, end: 4 });
   assert.deepEqual(component._calculateUpdatedData("1000.56124", { start: 6, end: 6 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 10, end: 10 });
   assert.deepEqual(component._calculateUpdatedData("1000.56124", { start: 4, end: 4 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 5, end: 5 });
   assert.deepEqual(component._calculateUpdatedData("-1000.56124", { start: 4, end: 4 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 5, end: 5 });
-  assert.deepEqual(component._calculateUpdatedData("-1000.56124", { start: 6, end: 8 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 8, end: 8 });
-  assert.deepEqual(component._calculateUpdatedData("-1000.56124", { start: 2, end: 6 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 2, end: 10 });
-  assert.deepEqual(component._calculateUpdatedData("-1000.56124", { start: 2, end: 5 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 2, end: 6 });
-  assert.deepEqual(component._calculateUpdatedData("-1000.56124", { start: 8, end: 6 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 8, end: 8 });
-  assert.deepEqual(component._calculateUpdatedData("-1000.56124", { start: 8, end: 5 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 8, end: 6 });
+  assert.deepEqual(component._calculateUpdatedData("-1000.56124", { start: 6, end: 8 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 11, end: 11 });
+  assert.deepEqual(component._calculateUpdatedData("-1000.56124", { start: 2, end: 6 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 11, end: 11 });
+  assert.deepEqual(component._calculateUpdatedData("-1000.56124", { start: 2, end: 5 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 6, end: 6 });
+  assert.deepEqual(component._calculateUpdatedData("-1000.56124", { start: 8, end: 6 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 11, end: 11 });
+  assert.deepEqual(component._calculateUpdatedData("-1000.56124", { start: 8, end: 5 }, { key: "ArrowRight", ctrlKey: true }).caretData, { start: 6, end: 6 });
 });
 
 test("_calculateUpdatedData – navigation – Shift + ArrowLeft", function(assert) {
