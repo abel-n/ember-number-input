@@ -164,6 +164,21 @@ export default TextField.extend({
     }
 
     // navigate left
+    if (key === "ArrowLeft" && shiftKey === true) {
+      const { start, end } = standardizedCaretData;
+      let newCaretEndIndex = end;
+      if (end) {
+        newCaretEndIndex -= 1;
+      }
+      return {
+        value: standardizedValue,
+        caretData: {
+          start: start,
+          end: newCaretEndIndex
+        }
+      };
+    }
+
     if (key === "ArrowLeft" && ctrlKey === true) {
       const { start, end } = standardizedCaretData;
       const indexOfDecimalSeparator = standardizedValue.toString().indexOf(this.get('decimalSeparator'));
@@ -201,6 +216,21 @@ export default TextField.extend({
     }
 
     // navigate right
+    if (key === "ArrowRight" && shiftKey === true) {
+      const { start, end } = standardizedCaretData;
+      let newCaretEndIndex = end;
+      if (end < standardizedValue.length) {
+        newCaretEndIndex += 1;
+      }
+      return {
+        value: standardizedValue,
+        caretData: {
+          start: start,
+          end: newCaretEndIndex
+        }
+      };
+    }
+
     if (key === "ArrowRight" && ctrlKey === true) {
       const { start, end } = standardizedCaretData;
       const indexOfDecimalSeparator = standardizedValue.toString().indexOf(this.get('decimalSeparator'));
