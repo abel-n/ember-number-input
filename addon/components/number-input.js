@@ -308,6 +308,27 @@ export default TextField.extend({
       };
     }
 
+    // delete
+    if (key === "Delete") {
+      const { start, end } = standardizedCaretData;
+      const minOfStartAndEnd = Math.min(start, end);
+      const maxOfStartAndEnd = Math.max(start, end);
+      let newValue = standardizedValue.substr(0, minOfStartAndEnd) + standardizedValue.substr(maxOfStartAndEnd + 1);
+      if (start === end && start === 0) {
+        newValue = standardizedValue.substr(1);
+      }
+      if (start !== end) {
+        newValue = standardizedValue.substr(0, minOfStartAndEnd) + standardizedValue.substr(maxOfStartAndEnd);
+      }
+      return {
+        value: newValue,
+        caretData: {
+          start: minOfStartAndEnd,
+          end: minOfStartAndEnd
+        }
+      };
+    }
+
     // toggle sign
     if (key === "-") {
       const { start, end } = standardizedCaretData;
