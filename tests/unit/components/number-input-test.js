@@ -257,14 +257,14 @@ test("_calculateUpdatedData – manipulation – Backspace", function(assert) {
   this.render();
 
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 0, end: 0 }, { key: "Backspace" }), { value: "-1234567890.12345", caretData: { start: 0, end: 0 } });
-  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 1, end: 1 }, { key: "Backspace" }), { value: "-1234567890.12345", caretData: { start: 0, end: 0 } });
+  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 1, end: 1 }, { key: "Backspace" }), { value: "1234567890.12345", caretData: { start: 0, end: 0 } });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 4, end: 4 }, { key: "Backspace" }), { value: "-124567890.12345", caretData: { start: 3, end: 3 } });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 11, end: 11 }, { key: "Backspace" }), { value: "-123456789.12345", caretData: { start: 10, end: 10 } });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 12, end: 12 }, { key: "Backspace" }), { value: "-123456789012345", caretData: { start: 11, end: 11 } });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 15, end: 15 }, { key: "Backspace" }), { value: "-1234567890.1245", caretData: { start: 14, end: 14 } });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 17, end: 17 }, { key: "Backspace" }), { value: "-1234567890.1234", caretData: { start: 16, end: 16 } });
-  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 4, end: 15 }, { key: "Backspace" }), { value: "4567890.123", caretData: { start: 4, end: 4 } });
-  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 14, end: 5 }, { key: "Backspace" }), { value: "567890.12", caretData: { start: 5, end: 5 } });
+  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 4, end: 15 }, { key: "Backspace" }), { value: "-12345", caretData: { start: 4, end: 4 } });
+  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 14, end: 5 }, { key: "Backspace" }), { value: "-1234345", caretData: { start: 5, end: 5 } });
 });
 
 test("_calculateUpdatedData – manipulation – Ctrl + Backspace", function(assert) {
@@ -272,14 +272,14 @@ test("_calculateUpdatedData – manipulation – Ctrl + Backspace", function(ass
   this.render();
 
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 0, end: 0 }, { key: "Backspace", ctrlKey: true }), { value: "-1234567890.12345", caretData: { start: 0, end: 0 } });
-  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 1, end: 1 }, { key: "Backspace", ctrlKey: true }), { value: "-1234567890.12345", caretData: { start: 0, end: 0 } });
+  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 1, end: 1 }, { key: "Backspace", ctrlKey: true }), { value: "1234567890.12345", caretData: { start: 0, end: 0 } });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 4, end: 4 }, { key: "Backspace", ctrlKey: true }), { value: "4567890.12345", caretData: { start: 0, end: 0 } });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 11, end: 11 }, { key: "Backspace", ctrlKey: true }), { value: ".12345", caretData: { start: 0, end: 0 } });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 12, end: 12 }, { key: "Backspace", ctrlKey: true }), { value: "-123456789012345", caretData: { start: 11, end: 11 } });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 15, end: 15 }, { key: "Backspace", ctrlKey: true }), { value: "-1234567890.45", caretData: { start: 12, end: 12 } });
   assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 17, end: 17 }, { key: "Backspace", ctrlKey: true }), { value: "-1234567890.", caretData: { start: 12, end: 12 } });
-  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 4, end: 15 }, { key: "Backspace", ctrlKey: true }), { value: "4567890.123", caretData: { start: 4, end: 4 } });
-  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 14, end: 5 }, { key: "Backspace", ctrlKey: true }), { value: "567890.12", caretData: { start: 5, end: 5 } });
+  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 4, end: 15 }, { key: "Backspace", ctrlKey: true }), { value: "-12345", caretData: { start: 4, end: 4 } });
+  assert.deepEqual(component._calculateUpdatedData("-1234567890.12345", { start: 14, end: 5 }, { key: "Backspace", ctrlKey: true }), { value: "-1234345", caretData: { start: 5, end: 5 } });
 });
 
 test("_calculateUpdatedData – manipulation – digits", function(assert) {

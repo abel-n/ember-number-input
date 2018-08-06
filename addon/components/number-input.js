@@ -308,6 +308,50 @@ export default TextField.extend({
       };
     }
 
+    // backspace
+    if (key === "Backspace" && ctrlKey === true) {
+      const { start, end } = standardizedCaretData;
+      const minOfStartAndEnd = Math.min(start, end);
+      const maxOfStartAndEnd = Math.max(start, end);
+      const indexOfDecimalSeparator = standardizedValue.toString().indexOf(this.get('decimalSeparator'));
+      let newValue = standardizedValue.substr(start);
+      if (indexOfDecimalSeparator < start) {
+        newValue = standardizedValue.substr(0, indexOfDecimalSeparator + 1) + standardizedValue.substr(start);
+      }
+      if (start !== end) {
+        newValue = standardizedValue.substr(0, minOfStartAndEnd) + standardizedValue.substr(maxOfStartAndEnd);
+      }
+      if (indexOfDecimalSeparator + 1 === start) {
+        newValue = standardizedValue.substr(0, indexOfDecimalSeparator) + standardizedValue.substr(start);
+      }
+      const subtractedValue = standardizedValue.length - newValue.length;
+      return {
+        value: newValue,
+        caretData: {
+          start: maxOfStartAndEnd - subtractedValue,
+          end: maxOfStartAndEnd - subtractedValue
+        }
+      };
+    }
+
+    if (key === "Backspace") {
+      const { start, end } = standardizedCaretData;
+      const minOfStartAndEnd = Math.min(start, end);
+      const maxOfStartAndEnd = Math.max(start, end);
+      let newValue = standardizedValue.substr(0, start ? start - 1 : 0) + standardizedValue.substr(start);
+      if (start !== end) {
+        newValue = standardizedValue.substr(0, minOfStartAndEnd) + standardizedValue.substr(maxOfStartAndEnd);
+      }
+      const subtractedValue = standardizedValue.length - newValue.length;
+      return {
+        value: newValue,
+        caretData: {
+          start: maxOfStartAndEnd - subtractedValue,
+          end: maxOfStartAndEnd - subtractedValue
+        }
+      };
+    }
+
     // delete
     if (key === "Delete" && ctrlKey === true) {
       const { start, end } = standardizedCaretData;
