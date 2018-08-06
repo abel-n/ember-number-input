@@ -309,14 +309,35 @@ export default TextField.extend({
     }
 
     // delete
+    if (key === "Delete" && ctrlKey === true) {
+      const { start, end } = standardizedCaretData;
+      const minOfStartAndEnd = Math.min(start, end);
+      const maxOfStartAndEnd = Math.max(start, end);
+      const indexOfDecimalSeparator = standardizedValue.toString().indexOf(this.get('decimalSeparator'));
+      let newValue = standardizedValue.substr(0, start);
+      if (indexOfDecimalSeparator > start) {
+        newValue = standardizedValue.substr(0, start) + standardizedValue.substr(indexOfDecimalSeparator);
+      }
+      if (start !== end) {
+        newValue = standardizedValue.substr(0, minOfStartAndEnd) + standardizedValue.substr(maxOfStartAndEnd);
+      }
+      if (indexOfDecimalSeparator === start) {
+        newValue = standardizedValue.substr(0, end) + standardizedValue.substr(end + 1);
+      }
+      return {
+        value: newValue,
+        caretData: {
+          start: minOfStartAndEnd,
+          end: minOfStartAndEnd
+        }
+      };
+    }
+
     if (key === "Delete") {
       const { start, end } = standardizedCaretData;
       const minOfStartAndEnd = Math.min(start, end);
       const maxOfStartAndEnd = Math.max(start, end);
-      let newValue = standardizedValue.substr(0, minOfStartAndEnd) + standardizedValue.substr(maxOfStartAndEnd + 1);
-      if (start === end && start === 0) {
-        newValue = standardizedValue.substr(1);
-      }
+      let newValue = standardizedValue.substr(0, end) + standardizedValue.substr(end + 1);
       if (start !== end) {
         newValue = standardizedValue.substr(0, minOfStartAndEnd) + standardizedValue.substr(maxOfStartAndEnd);
       }
