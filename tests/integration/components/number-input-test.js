@@ -10,6 +10,7 @@ import {
 } from 'ember-native-dom-helpers';
 import { fillInOneByOne } from '../../helpers/fill-in-one-by-one';
 
+
 moduleForComponent('number-input', "Integration | Component | number input", {
   integration: true
 });

@@ -1,5 +1,3 @@
-/* eslint-disable no-irregular-whitespace */
-
 import { moduleForComponent, test } from 'ember-qunit';
 
 moduleForComponent('number-input', "Unit | Component | number input", {
@@ -301,11 +299,11 @@ test("_calculateUpdatedData – manipulation – digits", function(assert) {
   this.render();
 
   assert.deepEqual(component._calculateUpdatedData("", { start: 0, end: 0 }, { key: "-" }), { value: "-", caretData: { start: 1, end: 1 } });
-  assert.deepEqual(component._calculateUpdatedData("-67890.12345", { start: 1, end: 1 }, { key: "-" }), { value: "-367890.12345", caretData: { start: 2, end: 2 } });
-  assert.deepEqual(component._calculateUpdatedData("-67890.12345", { start: 4, end: 4 }, { key: "-" }), { value: "-678390.12345", caretData: { start: 5, end: 5 } });
-  assert.deepEqual(component._calculateUpdatedData("-67890.12345", { start: 6, end: 6 }, { key: "-" }), { value: "-678903.12345", caretData: { start: 7, end: 7 } });
-  assert.deepEqual(component._calculateUpdatedData("-67890.12345", { start: 11, end: 11 }, { key: "-" }), { value: "-67890.123435", caretData: { start: 12, end: 12 } });
-  assert.deepEqual(component._calculateUpdatedData("-67890.12345", { start: 12, end: 12 }, { key: "-" }), { value: "-67890.123453", caretData: { start: 13, end: 13 } });
+  assert.deepEqual(component._calculateUpdatedData("-67890.12345", { start: 1, end: 1 }, { key: "3" }), { value: "-367890.12345", caretData: { start: 2, end: 2 } });
+  assert.deepEqual(component._calculateUpdatedData("-67890.12345", { start: 4, end: 4 }, { key: "3" }), { value: "-678390.12345", caretData: { start: 5, end: 5 } });
+  assert.deepEqual(component._calculateUpdatedData("-67890.12345", { start: 6, end: 6 }, { key: "3" }), { value: "-678903.12345", caretData: { start: 7, end: 7 } });
+  assert.deepEqual(component._calculateUpdatedData("-67890.12345", { start: 11, end: 11 }, { key: "3" }), { value: "-67890.123435", caretData: { start: 12, end: 12 } });
+  assert.deepEqual(component._calculateUpdatedData("-67890.12345", { start: 12, end: 12 }, { key: "3" }), { value: "-67890.123453", caretData: { start: 13, end: 13 } });
 });
 
 test("_calculateUpdatedData – manipulation – decimal separator", function(assert) {

@@ -163,6 +163,22 @@ export default TextField.extend({
       };
     }
 
+    if (key === "," || key === "." || key === "NumpadDecimal") {
+      const { start, end } = standardizedCaretData;
+      const indexOfDecimalSeparator = standardizedValue.toString().indexOf(this.get('decimalSeparator'));
+      let newValue = standardizedValue;
+      if (indexOfDecimalSeparator < 0) {
+        newValue = standardizedValue.substr(0, start) + "." + standardizedValue.substr(start);
+      }
+      return {
+        value: newValue,
+        caretData: {
+          start: start + 1,
+          end: end + 1
+        }
+      };
+    }
+
     // navigate left
     if (key === "ArrowLeft" && ctrlKey === true && shiftKey === true) {
       const { start, end } = standardizedCaretData;
